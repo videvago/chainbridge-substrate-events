@@ -5,8 +5,6 @@ import (
 )
 
 type Events struct {
-	ChainBridge_FungibleTransfer        []EventFungibleTransfer        //nolint:stylecheck,golint
-	ChainBridge_NonFungibleTransfer     []EventNonFungibleTransfer     //nolint:stylecheck,golint
 	ChainBridge_GenericTransfer         []EventGenericTransfer         //nolint:stylecheck,golint
 	ChainBridge_RelayerThresholdChanged []EventRelayerThresholdChanged //nolint:stylecheck,golint
 	ChainBridge_ChainWhitelisted        []EventChainWhitelisted        //nolint:stylecheck,golint
@@ -20,31 +18,11 @@ type Events struct {
 	ChainBridge_ProposalFailed          []EventProposalFailed          //nolint:stylecheck,golint
 }
 
-type EventFungibleTransfer struct {
-	Phase        types.Phase
-	Destination  types.U8
-	DepositNonce types.U64
-	ResourceId   types.Bytes32
-	Amount       types.U256
-	Recipient    types.Bytes
-	Topics       []types.Hash
-}
-
-type EventNonFungibleTransfer struct {
-	Phase        types.Phase
-	Destination  types.U8
-	DepositNonce types.U64
-	ResourceId   types.Bytes32
-	TokenId      types.Bytes
-	Recipient    types.Bytes
-	Metadata     types.Bytes
-	Topics       []types.Hash
-}
-
 type EventGenericTransfer struct {
 	Phase        types.Phase
 	Destination  types.U8
 	DepositNonce types.U64
+	DepositKey   types.Bytes32
 	ResourceId   types.Bytes32
 	Metadata     types.Bytes
 	Topics       []types.Hash
@@ -75,45 +53,39 @@ type EventRelayerRemoved struct {
 }
 
 type EventVoteFor struct {
-	Phase        types.Phase
-	SourceId     types.U8
-	DepositNonce types.U64
-	Voter        types.AccountID
-	Topics       []types.Hash
+	Phase      types.Phase
+	DepositKey types.Bytes32
+	Voter      types.AccountID
+	Topics     []types.Hash
 }
 
 type EventVoteAgainst struct {
-	Phase        types.Phase
-	SourceId     types.U8
-	DepositNonce types.U64
-	Voter        types.AccountID
-	Topics       []types.Hash
+	Phase      types.Phase
+	DepositKey types.Bytes32
+	Voter      types.AccountID
+	Topics     []types.Hash
 }
 
 type EventProposalApproved struct {
-	Phase        types.Phase
-	SourceId     types.U8
-	DepositNonce types.U64
-	Topics       []types.Hash
+	Phase      types.Phase
+	DepositKey types.Bytes32
+	Topics     []types.Hash
 }
 
 type EventProposalRejected struct {
-	Phase        types.Phase
-	SourceId     types.U8
-	DepositNonce types.U64
-	Topics       []types.Hash
+	Phase      types.Phase
+	DepositKey types.Bytes32
+	Topics     []types.Hash
 }
 
 type EventProposalSucceeded struct {
-	Phase        types.Phase
-	SourceId     types.U8
-	DepositNonce types.U64
-	Topics       []types.Hash
+	Phase      types.Phase
+	DepositKey types.Bytes32
+	Topics     []types.Hash
 }
 
 type EventProposalFailed struct {
-	Phase        types.Phase
-	SourceId     types.U8
-	DepositNonce types.U64
-	Topics       []types.Hash
+	Phase      types.Phase
+	DepositKey types.Bytes32
+	Topics     []types.Hash
 }
